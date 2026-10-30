@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171a22">
+  <title>再切一刀就好</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>再切一刀就好</h1>
+      <p>哪有賭徒天天輸</p>
+    </div>
+    <div class="wallet">
+      <span>持有金幣</span>
+      <strong id="gold">0 G</strong>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="market" class="active">原石市場</button>
+    <button data-tab="inventory">倉庫</button>
+    <button data-tab="cutting">切割室</button>
+    <button data-tab="crafting">首飾加工</button>
+    <button data-tab="museum">博物館</button>
+    <button data-tab="skills">技能樹</button>
+  </nav>
+
+  <main>
+    <section id="market" class="page active">
+      <div class="section-heading">
+        <div>
+          <h2>原石市場</h2>
+          <p>每一顆原石都有自己的秘密。</p>
+        </div>
+        <div class="actions">
+          <button id="single-draw" class="primary">單抽 500 G</button>
+          <button id="ten-draw" class="primary">十抽 4,500 G</button>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <h3>抽卡機率</h3>
+        <div class="rarity-list">
+          <span>普通 55%</span>
+          <span>精良 27%</span>
+          <span>稀有 13%</span>
+          <span>極稀有 4.5%</span>
+          <span>傳奇 0.5%</span>
+        </div>
+        <p id="pity-info"></p>
+      </div>
+
+      <div id="draw-results" class="stone-grid"></div>
+    </section>
+
+    <section id="inventory" class="page">
+      <div class="section-heading">
+        <div>
+          <h2>倉庫</h2>
+          <p>收藏、鑑定，或是把它們送進切割室。</p>
+        </div>
+        <span id="inventory-count" class="muted"></span>
+      </div>
+      <div id="inventory-list" class="stone-grid"></div>
+    </section>
+
+    <section id="cutting" class="page">
+      <div class="section-heading">
+        <div>
+          <h2>切割室</h2>
+          <p>每一刀都可能改變命運。</p>
+        </div>
+      </div>
+
+      <div class="workbench">
+        <div class="stone-preview" id="stone-preview">
+          <div class="empty-state">請先從倉庫選擇一顆原石</div>
+        </div>
+        <div class="work-controls">
+          <label for="cut-position">切割位置</label>
+          <input id="cut-position" type="range" min="20" max="80" value="50">
+          <div class="range-labels">
+            <span>偏左</span><span>中央</span><span>偏右</span>
+          </div>
+
+          <label for="cut-direction">切割方向</label>
+          <select id="cut-direction">
+            <option value="vertical">垂直切割</option>
+            <option value="horizontal">水平切割</option>
+          </select>
+
+          <button id="cut-button" class="primary" disabled>開始切割</button>
+          <button id="skip-cut" disabled>直接完成切割</button>
+
+          <div id="cut-message" class="message"></div>
+        </div>
+      </div>
+
+      <div id="cut-results" class="stone-grid"></div>
+    </section>
+
+    <section id="crafting" class="page">
+      <div class="section-heading">
+        <div>
+          <h2>首飾加工室</h2>
+          <p>把玉石變成值得收藏的作品。</p>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <h3>加工說明</h3>
+        <p>選擇一塊玉料，製作成首飾。不同玉種、品相與稀有度會影響成品價值。</p>
+      </div>
+      <div id="jade-list" class="stone-grid"></div>
+    </section>
+
+    <section id="museum" class="page">
+      <div class="section-heading">
+        <div>
+          <h2>私人博物館</h2>
+          <p>讓收藏替你賺取參觀收益。</p>
+        </div>
+        <strong id="museum-income">每分鐘 0 G</strong>
+      </div>
+      <div class="info-panel">
+        <h3>累積收益</h3>
+        <strong id="museum-bank">0 G</strong>
+        <button id="collect-museum" class="primary">領取收益</button>
+      </div>
+      <div id="museum-list" class="stone-grid"></div>
+    </section>
+
+    <section id="skills" class="page">
+      <div class="section-heading">
+        <div>
+          <h2>技能樹</h2>
+          <p>用金幣投資自己的鑑定與加工技術。</p>
+        </div>
+      </div>
+      <div id="skill-list" class="stone-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-actions">
+      <button id="export-save">匯出存檔</button>
+      <button id="import-save">匯入存檔</button>
+      <button id="reset-save" class="danger">重置遊戲</button>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+    </div>
+    <p>再切一刀就好。所有金幣皆為遊戲內虛擬貨幣。</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
